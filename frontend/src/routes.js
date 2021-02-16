@@ -1,8 +1,14 @@
 import AddAgama from './components/AddAgama.vue'
 import UpdateAgama from './components/UpdateAgama.vue'
 import ViewAgama from './components/ViewAgama.vue'
+import Home from './components/Home.vue'
  
 const routes = [
+    {
+        name: '/',
+        path: '/',
+        component: Home
+    },
     {
     name: 'AddAgama',
     path: '/agama/add',

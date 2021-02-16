@@ -18,11 +18,11 @@
           <td class="has-text-centered">
             <router-link
               :to="{ name: 'UpdateAgama', params: { id: item.id_agama } }"
-              class="button is-info is-small"
+              class="btn btn-primary-sm"
               >Update</router-link
-            >
+            > &nbsp;&nbsp;
             <a
-              class="button is-danger is-small"
+              class="btn btn-warning-sm"
               @click="deleteAgama(item.id_agama)"
               >Delete</a
             >

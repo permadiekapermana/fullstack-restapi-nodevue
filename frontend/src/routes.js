@@ -2,6 +2,7 @@ import Dashboard from './components/Dashboard.vue'
 import viewAgama from './components/module_agama/viewAgama.vue'
 import addAgama from './components/module_agama/addAgama.vue'
 import updateAgama from './components/module_agama/updateAgama.vue'
+import viewSiswa from './components/module_siswa/viewSiswa.vue'
  
 const routes = [
     {
@@ -28,6 +29,11 @@ const routes = [
     name: 'updateAgama',
     path: '/agama/update/:id',
     component: updateAgama
+    },
+    {
+    name: 'viewSiswa',
+    path: '/siswa/view',
+    component: viewSiswa
     },
 ];
  

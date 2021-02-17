@@ -76,13 +76,13 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="widgets.html" class="nav-link">
+            <router-link :to="{name: 'viewSiswa'}" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Data Siswa
                 <!-- <span class="right badge badge-danger">New</span> -->
               </p>
-            </a>
+            </router-link>
           </li>
         </ul>
       </nav>

@@ -204,6 +204,19 @@
                         </option>
                       </select>
                     </div>
+                    <h5>E. KONTAK</h5>
+                    <div class="form-group">
+                      <label for="no_telp">Nomor Telepon</label>
+                      <input type="text" class="form-control col-6" id="no_telp" placeholder="Masukkan Nomor Telepon" v-model="no_telp">
+                    </div>
+                    <div class="form-group">
+                      <label for="no_hp">Nomor HP</label>
+                      <input type="text" class="form-control col-6" id="no_hp" placeholder="Masukkan Nomor HP" v-model="no_hp">
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="email" class="form-control col-6" id="email" placeholder="Masukkan Email" v-model="email">
+                    </div>
 
                 </div>
                 <!-- /.card-body -->

@@ -29,7 +29,7 @@
         <div class="col-12">
 
             <!-- general form elements -->
-            <div class="card card-primary">
+            <div class="card card-success">
                 <div class="card-header">
                 <font class="card-title" text-color="white">Add Data Agama</font>
                 </div>
@@ -46,7 +46,7 @@
 
                 <div class="card-footer">
                     <button class="btn btn-secondary mr-3"><p><router-link tag="p" :to="{name: 'viewAgama'}">Back</router-link></p></button>
-                    <button class="btn btn-primary" @click="saveAgama">Submit</button>
+                    <button class="btn btn-success" @click="saveAgama">Submit</button>
                 </div>
                 
             </div>

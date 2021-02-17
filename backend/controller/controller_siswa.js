@@ -8,7 +8,7 @@ var connection = require('./../connection');
 // select semua siswa
 exports.viewSiswa = function(req,res){
     connection.query(`SELECT
-	A.nama_lengkap, A.jenis_kelamin, CONCAT(A.tmp_lahir, ", ", DATE_FORMAT(A.tgl_lahir, "%d-%m-%Y")) AS tempat_tgl_lahir,
+	A.id_siswa, A.nama_lengkap, A.jenis_kelamin, CONCAT(A.tmp_lahir, ", ", DATE_FORMAT(A.tgl_lahir, "%d-%m-%Y")) AS tempat_tgl_lahir,
 	B.nama_ayah, E.nama_ibu, f.nama_wali,
 	CONCAT(A.alamat_lengkap, " dusun ", A.nama_dusun, " RT ", A.no_rt, " RW ", A.no_rw, " kelurahan ", C.kelurahan, " Kecamatan ", D.kecamatan) AS alamat_lengkap_banget
 FROM siswa A

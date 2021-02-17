@@ -1,0 +1,469 @@
+<template>
+    <div id="addSiswa">
+        <Navbar/>
+        <Sidebar/>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+    <div class="row mb-2">
+        <div class="col-sm-6">
+        <h1>Siswa</h1>
+        </div>
+        <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><router-link :to="{name: 'dashboard'}">Home</router-link></li>
+            <li class="breadcrumb-item active">Siswa</li>
+        </ol>
+        </div>
+    </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+
+            <!-- general form elements -->
+            <div class="card card-success">
+                <div class="card-header">
+                <font class="card-title" text-color="white">Add Data Siswa</font>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->                
+                <div class="card-body">
+                    <H5>A. DATA PRIBADI</H5>
+                    <div class="form-group">
+                      <label for="id_siswa">ID Siswa</label>
+                      <input type="text" class="form-control col-6" id="id_siswa" placeholder="Masukkan ID Siswa" v-model="id_siswa">
+                    </div>
+                    <div class="form-group">
+                      <label for="nama_lengkap">Nama Lengkap Siswa</label>
+                      <input type="text" class="form-control col-6" id="nama_lengkap" placeholder="Masukkan Nama Lengkap Siswa" v-model="nama_lengkap">
+                    </div>
+                    <div class="form-group">
+                      <label for="jenis_kelamin">Jenis Kelamin</label>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="jenis_kelamin" value="L" v-model="jenis_kelamin" checked>
+                        <label class="form-check-label">Laki - Laki</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="jenis_kelamin" v-model="jenis_kelamin" value="P">
+                        <label class="form-check-label">Perempuan</label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="nisn">NISN (Nomor Induk Siswa Nasional)</label>
+                      <input type="text" class="form-control col-6" id="nisn" placeholder="Masukkan NISN" v-model="nisn">
+                    </div>
+                    <div class="form-group">
+                      <label for="nik">NIK / No. KITAS (Untuk WNA)</label>
+                      <input type="text" class="form-control col-6" id="nik" placeholder="Masukkan NIK" v-model="nik">
+                    </div>
+                    <div class="form-group">
+                      <label for="tmp_lahir">Tempat Lahir</label>
+                      <input type="text" class="form-control col-6" id="tmp_lahir" placeholder="Masukkan Tempat Lahir" v-model="tmp_lahir">
+                    </div>
+                    <div class="form-group">
+                      <label for="tgl_lahir">Tanggal Lahir</label>
+                      <input type="date" class="form-control col-6" id="tgl_lahir" v-model="tgl_lahir">
+                    </div>
+                    <div class="form-group">
+                      <label>Agama</label>
+                      <select class="form-control col-6" v-model="id_agama">
+                        <option value="">-- Pilih Agama --</option>
+                        <option v-for="itemAgama in itemsAgama" :key="itemAgama.id_agama" v-bind:value="itemAgama.id_agama">
+                          {{ itemAgama.agama }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="kewarganegaraan">kewarganegaraan</label>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="kewarganegaraan" value="WNI" v-model="kewarganegaraan">
+                        <label class="form-check-label">WNI (Warga Negara Indonesia)</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="kewarganegaraan" v-model="kewarganegaraan" value="WNA">
+                        <label class="form-check-label">WNA (Warga Negara Asing)</label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Berkebutuhan Khusus</label>
+                      <select class="form-control col-6" v-model="id_disabilitas">
+                        <option value="">-- Pilih Status Berkebutuhan Khusus --</option>
+                        <option v-for="itemDisabilitas in itemsDisabilitas" :key="itemDisabilitas.id_disabilitas" v-bind:value="itemDisabilitas.id_disabilitas">
+                          {{ itemDisabilitas.status_disabilitas }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="alamat_lengkap">Alamat Lengkap</label>
+                      <textarea id="alamat_lengkap" class="form-control col-6" cols="30" rows="3" v-model="alamat_lengkap" placeholder="Masukkan Alamat Lengkap"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label>Kelurahan</label>
+                      <select class="form-control col-6" v-model="id_kelurahan">
+                        <option value="">-- Pilih Kelurahan --</option>
+                        <option v-for="itemKelurahan in itemsKelurahan" :key="itemKelurahan.id_kelurahan" v-bind:value="itemKelurahan.id_kelurahan">
+                          {{ itemKelurahan.kelurahan }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="nama_dusun">Nama Dusun</label>
+                      <input type="text" class="form-control col-6" id="nama_dusun" placeholder="Masukkan Nama Dusun Siswa" v-model="nama_dusun">
+                    </div>
+                    <div class="form-group">
+                      <label for="no_rt">Nomor RT</label>
+                      <input type="text" class="form-control col-6" id="no_rt" placeholder="Masukkan Nomor RT" v-model="no_rt">
+                    </div>
+                    <div class="form-group">
+                      <label for="no_rw">Nomor RW</label>
+                      <input type="text" class="form-control col-6" id="no_rw" placeholder="Masukkan Nomor RW" v-model="no_rw">
+                    </div>
+                    <div class="form-group">
+                      <label>Status Tinggal</label>
+                      <select class="form-control col-6" v-model="id_statustinggal">
+                        <option value="">-- Pilih Status Tinggal --</option>
+                        <option v-for="itemStatusTinggal in itemsStatusTinggal" :key="itemStatusTinggal.id_statustinggal" v-bind:value="itemStatusTinggal.id_statustinggal">
+                          {{ itemStatusTinggal.status_tinggal }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Transportasi</label>
+                      <select class="form-control col-6" v-model="id_transportasi">
+                        <option value="">-- Pilih Transportasi --</option>
+                        <option v-for="itemTransportasi in itemsTransportasi" :key="itemTransportasi.id_transportasi" v-bind:value="itemTransportasi.id_transportasi">
+                          {{ itemTransportasi.status_transportasi }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="no_kps">Nomor KPS (Apabila Menerima)</label>
+                      <input type="text" class="form-control col-6" id="no_kps" placeholder="Masukkan Nomor KPS" v-model="no_kps">
+                    </div>
+                    <div class="form-group">
+                      <label>Nomor PIP (Program Indonesia Pintar)</label>
+                      <select class="form-control col-6" v-model="id_pip">
+                        <option value="">-- Pilih Nomor PIP --</option>
+                        <option v-for="itemPIP in itemsPIP" :key="itemPIP.id_pip" v-bind:value="itemPIP.id_pip">
+                          {{ itemPIP.no_kip }} - {{ itemPIP.nama_kip }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="no_kks">Nomor KKS (Kartu Keluarga Sejahtera)</label>
+                      <input type="text" class="form-control col-6" id="no_kks" placeholder="Masukkan Nomor KKS" v-model="no_kks">
+                    </div>
+                    <div class="form-group">
+                      <label for="no_akta">Nomor Registrasi Kartu Lahir</label>
+                      <input type="text" class="form-control col-6" id="no_akta" placeholder="Masukkan Nomor Akta" v-model="no_akta">
+                    </div>
+                    <div class="form-group">
+                      <label>Nomor Rekening Bank</label>
+                      <select class="form-control col-6" v-model="id_bank">
+                        <option value="">-- Pilih Rekening Bank --</option>
+                        <option v-for="itemBank in itemsBank" :key="itemBank.id_bank" v-bind:value="itemBank.id_bank">
+                          {{ itemBank.nama_bank }} - {{ itemBank.norek }} - {{ itemBank.atas_nama }}
+                        </option>
+                      </select>
+                    </div>
+                    <H5>B. DATA AYAH KANDUNG</H5>
+                    <div class="form-group">
+                      <label>Data Ayah</label>
+                      <select class="form-control col-6" v-model="id_ayah">
+                        <option value="">-- Pilih Data Ayah --</option>
+                        <option v-for="itemAyah in itemsAyah" :key="itemAyah.id_ayah" v-bind:value="itemAyah.id_ayah">
+                          {{ itemAyah.nik }} - {{ itemAyah.nama_ayah }}
+                        </option>
+                      </select>
+                    </div>
+                    <H5>C. DATA IBU KANDUNG</H5>
+                    <div class="form-group">
+                      <label>Data Ibu</label>
+                      <select class="form-control col-6" v-model="id_ibu">
+                        <option value="">-- Pilih Data Ibu --</option>
+                        <option v-for="itemIbu in itemsIbu" :key="itemIbu.id_ibu" v-bind:value="itemIbu.id_ibu">
+                          {{ itemIbu.nik }} - {{ itemIbu.nama_ibu }}
+                        </option>
+                      </select>
+                    </div>
+                    <H5>D. DATA WALI</H5>
+                    <div class="form-group">
+                      <label>Data Wali</label>
+                      <select class="form-control col-6" v-model="id_wali">
+                        <option value="">-- Pilih Data Wali --</option>
+                        <option v-for="itemWali in itemsWali" :key="itemWali.id_wali" v-bind:value="itemWali.id_wali">
+                          {{ itemWali.nik }} - {{ itemWali.nama_wali }}
+                        </option>
+                      </select>
+                    </div>
+
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <button class="btn btn-secondary mr-3"><p><router-link tag="p" :to="{name: 'viewSiswa'}">Back</router-link></p></button>
+                    <button class="btn btn-success" @click="saveSiswa">Submit</button>
+                </div>
+                
+            </div>
+            <!-- /.card -->
+
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+</div>
+<!-- /.content-wrapper -->
+
+        <Footer/>
+    </div>
+</template>
+
+<script>
+// import axios
+import axios from "axios";
+import Navbar from './../_layouts/Navbar.vue'
+import Sidebar from './../_layouts/Sidebar.vue'
+import Footer from './../_layouts/Footer.vue'
+
+export default {
+  name: 'addSiswa',
+  components: {
+    Navbar,
+    Sidebar,
+    Footer
+  },
+  data() {
+    return {
+        id_siswa: "",
+        nama_lengkap: "",
+        jenis_kelamin: "",
+        nisn: "",
+        nik: "",
+        tmp_lahir: "",
+        tgl_lahir: "",
+        id_agama: "",
+        itemsAgama: [],
+        kewarganegaraan: "",
+        id_disabilitas: "",
+        itemsDisabilitas: [],
+        alamat_lengkap: "",
+        id_kelurahan: "",
+        itemsKelurahan: [],
+        nama_dusun: "",
+        no_rt: "",
+        no_rw: "",
+        id_statustinggal: "",
+        itemsStatusTinggal: [],
+        id_transportasi: "",
+        itemsTransportasi: [],
+        no_kps: "",
+        id_pip: "",
+        itemsPIP: [],
+        no_kks: "",
+        no_akta: "",
+        id_bank: "",
+        itemsBank: [],
+        id_ayah: "",
+        itemsAyah: [],
+        id_ibu: "",
+        itemsIbu: [],
+        id_wali: "",
+        itemsWali: [],
+        no_telp: "",
+        no_hp: "",
+        email: "",
+    };
+  },
+
+  created() {
+    this.viewAgama();
+    this.viewDisabilitas();
+    this.viewKelurahan();
+    this.viewStatusTinggal();
+    this.viewTransportasi();
+    this.viewPIP();
+    this.viewBank();
+    this.viewAyah();
+    this.viewIbu();
+    this.viewWali();
+  },
+
+  methods: {
+    // Get All Agama
+    async viewAgama() {
+      try {
+        const response = await axios.get("http://localhost:8800/agama/view");
+        this.itemsAgama = response.data.values;
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    // Get All Status Disabilitas
+    async viewDisabilitas() {
+      try {
+        const response = await axios.get("http://localhost:8800/disabilitas/view");
+        this.itemsDisabilitas = response.data.values;
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    // Get All Data Kelurahan
+    async viewKelurahan() {
+      try {
+        const response = await axios.get("http://localhost:8800/kelurahan/view");
+        this.itemsKelurahan = response.data.values;
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    // Get All Data Status Tinggal
+    async viewStatusTinggal() {
+      try {
+        const response = await axios.get("http://localhost:8800/statustinggal/view");
+        this.itemsStatusTinggal = response.data.values;
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    // Get All Data Transportasi
+    async viewTransportasi() {
+      try {
+        const response = await axios.get("http://localhost:8800/transportasi/view");
+        this.itemsTransportasi = response.data.values;
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    // Get All Data Kartu PIP
+    async viewPIP() {
+      try {
+        const response = await axios.get("http://localhost:8800/pip/view");
+        this.itemsPIP = response.data.values;
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    // Get All Data Rekening Bank
+    async viewBank() {
+      try {
+        const response = await axios.get("http://localhost:8800/bank/view");
+        this.itemsBank = response.data.values;
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    // Get All Data Ayah
+    async viewAyah() {
+      try {
+        const response = await axios.get("http://localhost:8800/ayah/view");
+        this.itemsAyah = response.data.values;
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    // Get All Data Ibu
+    async viewIbu() {
+      try {
+        const response = await axios.get("http://localhost:8800/ibu/view");
+        this.itemsIbu = response.data.values;
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    // Get All Data Wali
+    async viewWali() {
+      try {
+        const response = await axios.get("http://localhost:8800/wali/view");
+        this.itemsWali = response.data.values;
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    // Create New agama
+    async saveSiswa() {
+      try {
+        await axios.post("http://localhost:8800/siswa/add", {
+          id_siswa: this.id_siswa,
+          nama_lengkap: this.nama_lengkap,
+          jenis_kelamin: this.jenis_kelamin,
+          nisn: this.nisn,
+          nik: this.nik,
+          tmp_lahir: this.tmp_lahir,
+          tgl_lahir: this.tgl_lahir,
+          id_agama: this.id_agama,
+          kewarganegaraan: this.kewarganegaraan,
+          id_disabilitas: this.id_disabilitas,
+          alamat_lengkap: this.alamat_lengkap,
+          id_kelurahan: this.id_kelurahan,
+          nama_dusun: this.nama_dusun,
+          no_rt: this.no_rt,
+          no_rw: this.no_rw,
+          id_statustinggal: this.id_statustinggal,
+          id_transportasi: this.id_transportasi,
+          no_kps: this.no_kps,
+          id_pip: this.id_pip,
+          no_kks: this.no_kks,
+          no_akta: this.no_akta,
+          id_bank: this.id_bank,
+          id_ayah: this.id_ayah,
+          id_ibu: this.id_ibu,
+          id_wali: this.id_wali,
+          no_telp: this.no_telp,
+          no_hp: this.no_hp,
+          email: this.email,
+        });
+        this.id_siswa = "";
+        this.nama_lengkap = "";
+        this.jenis_kelamin = "",
+        this.nisn = "",
+        this.nik = "",
+        this.tmp_lahir = "",
+        this.tgl_lahir = "",
+        this.id_agama = "",
+        this.kewarganegaraan = "",
+        this.id_disabilitas = "",
+        this.alamat_lengkap = "",
+        this.id_kelurahan = "",
+        this.nama_dusun = "",
+        this.no_rt = "",
+        this.no_rw = "",
+        this.id_statustinggal = "",
+        this.id_transportasi = "",
+        this.no_kps = "",
+        this.id_pip = "",
+        this.no_kks = "",
+        this.no_akta = "",
+        this.id_bank = "",
+        this.id_ayah = "",
+        this.id_ibu = "",
+        this.id_wali = "",
+        this.no_telp = "",
+        this.no_hp = "",
+        this.email = "",
+        this.$router.push("/siswa/view");
+      } catch (err) {
+        console.log(err);
+      }
+    },
+
+  },
+}
+</script>
+
+<style lang="stylus" scoped>
+
+</style>

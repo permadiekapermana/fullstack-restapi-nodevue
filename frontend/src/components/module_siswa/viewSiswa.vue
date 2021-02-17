@@ -48,7 +48,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="item in items" :key="item.agama">
+                <tr v-for="item in items" :key="item.id_siswa">
                 <td>{{ item.nama_lengkap }}</td>
                 <td>{{ item.jenis_kelamin }}</td>
                 <td>{{ item.tempat_tgl_lahir }}</td>
@@ -115,7 +115,7 @@ export default {
   },
  
   methods: {
-    // Get All Products
+    // Get All Siswa
     async viewSiswa() {
       try {
         const response = await axios.get("http://localhost:8800/siswa/view");
@@ -125,11 +125,11 @@ export default {
       }
     },
  
-    // Delete Product
+    // Delete Siswa
     async deleteSiswa(id_siswa) {
       try {
         await axios.delete(`http://localhost:8800/siswa/delete/${id_siswa}`);
-        // console.log(this.id_agama);
+        console.log(id_siswa)
         this.viewSiswa();
       } catch (err) {
         console.log(err);

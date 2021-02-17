@@ -45,12 +45,12 @@ const routes = [
     },
     {
         name: 'updateSiswa',
-        path: '/siswa/update',
+        path: '/siswa/update/:id',
         component: updateSiswa
     },
     {
         name: 'infoSiswa',
-        path: '/siswa/info',
+        path: '/siswa/info/:id',
         component: infoSiswa
     },
 ];

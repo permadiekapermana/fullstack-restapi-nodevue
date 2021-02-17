@@ -19,7 +19,18 @@ exports.viewSiswa = function(req,res){
 // select data siswa berdasarkan id
 exports.viewSiswaById = function(req,res){
     let id_siswa = req.params.id_siswa;
-    connection.query('SELECT * FROM siswa WHERE id_siswa = ?', [id_siswa],
+    connection.query(`SELECT
+	A.nama_lengkap, A.jenis_kelamin, CONCAT(A.tmp_lahir, ", ", DATE_FORMAT(A.tgl_lahir, "%d-%m-%Y")) AS tempat_tgl_lahir,
+	B.nama_ayah, E.nama_ibu, f.nama_wali,
+	CONCAT(A.alamat_lengkap, " dusun ", A.nama_dusun, " RT ", A.no_rt, " RW ", A.no_rw, " kelurahan ", C.kelurahan, " Kecamatan ", D.kecamatan) AS alamat_lengkap_banget
+FROM siswa A
+	LEFT JOIN ayah B ON B.id_ayah=A.id_ayah
+	INNER JOIN kelurahan C ON A.id_kelurahan=C.id_kelurahan
+	INNER JOIN kecamatan D ON C.id_kecamatan=D.id_kecamatan
+	LEFT JOIN ibu E ON A.id_ibu=E.id_ibu
+    LEFT JOIN wali F ON A.id_wali=F.id_wali
+    WHERE id_siswa = ?
+ORDER BY A.nama_lengkap ASC`, [id_siswa],
         function(error, rows, field){
             if(error){
                 connection.log(error);

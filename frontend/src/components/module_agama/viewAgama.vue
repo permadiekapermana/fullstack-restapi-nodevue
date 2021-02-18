@@ -119,9 +119,11 @@ export default {
     // Delete Product
     async deleteAgama(id_agama) {
       try {
+        if(confirm("Are you sure ?")){
         await axios.delete(`http://localhost:8800/agama/delete/${id_agama}`);
         // console.log(this.id_agama);
         this.viewAgama();
+        }
       } catch (err) {
         console.log(err);
       }

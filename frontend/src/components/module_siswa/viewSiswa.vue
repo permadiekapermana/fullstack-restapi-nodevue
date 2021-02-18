@@ -128,8 +128,10 @@ export default {
     // Delete Siswa
     async deleteSiswa(id_siswa) {
       try {
+        if(confirm("Are you sure ?")){
         await axios.delete(`http://localhost:8800/siswa/delete/${id_siswa}`);
         this.viewSiswa();
+        }
       } catch (err) {
         console.log(err);
       }

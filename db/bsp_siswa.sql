@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 11, 2021 at 08:05 AM
+-- Generation Time: Feb 18, 2021 at 06:11 AM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.1.33
 
@@ -436,16 +436,16 @@ CREATE TABLE `siswa` (
   `kewarganegaraan` varchar(3) NOT NULL,
   `id_disabilitas` smallint(3) NOT NULL,
   `alamat_lengkap` varchar(255) NOT NULL,
-  `id_kelurahan` smallint(6) NOT NULL,
-  `nama_dusun` varchar(20) NOT NULL,
-  `no_rt` varchar(3) NOT NULL,
-  `no_rw` varchar(3) NOT NULL,
-  `id_statustinggal` smallint(6) NOT NULL,
-  `id_transportasi` smallint(6) NOT NULL,
+  `id_kelurahan` smallint(6) DEFAULT NULL,
+  `nama_dusun` varchar(20) DEFAULT NULL,
+  `no_rt` varchar(3) DEFAULT NULL,
+  `no_rw` varchar(3) DEFAULT NULL,
+  `id_statustinggal` smallint(6) DEFAULT NULL,
+  `id_transportasi` smallint(6) DEFAULT NULL,
   `no_kps` varchar(20) DEFAULT NULL,
   `id_pip` smallint(6) DEFAULT NULL,
   `no_kks` varchar(20) DEFAULT NULL,
-  `no_akta` varchar(20) NOT NULL,
+  `no_akta` varchar(20) DEFAULT NULL,
   `id_bank` smallint(6) DEFAULT NULL,
   `id_ayah` varchar(12) DEFAULT NULL,
   `id_ibu` varchar(12) DEFAULT NULL,
@@ -471,8 +471,7 @@ INSERT INTO `siswa` (`id_siswa`, `nama_lengkap`, `jenis_kelamin`, `nisn`, `nik`,
 ('SSW050221009', 'Dinda Rofatussafwa', 'P', '1234567891', '1234567891', 'Serang', '2009-08-14', 1, 'WNI', 1, 'Kp. kadomas', 1, 'Kadomas', '001', '001', 2, 1, NULL, NULL, NULL, '1234567891', NULL, NULL, NULL, 'PRW03022100', NULL, NULL, NULL),
 ('SSW050221010', 'Sinta Sugiarta', 'P', '1234567891', '1234567891', 'Serang', '2016-02-05', 1, 'WNI', 1, 'Kp. Cinangka', 2, 'Cinangka', '001', '001', 2, 1, NULL, NULL, NULL, '1234567891', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 ('SSW050221011', 'Assipa Rohmawati', 'P', '1234567891', '1234567891', 'Serang', '2015-02-05', 1, 'WNI', 1, 'Kp. Kadomas', 1, 'Kadomas', '001', '001', 2, 1, NULL, NULL, NULL, '1234567891', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('SSW050221012', 'Machfudz Achyar Benzema', 'L', '1234567891', '1234567891', 'Serang', '2015-02-05', 2, 'WNI', 1, 'Kp. Kopi Bera', 1, 'Kopi Bera', '002', '002', 2, 1, NULL, NULL, NULL, '1234567891', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-('SSW050221014', 'a', 'L', '123', '123', 'cirebon', '2008-04-16', 1, 'WNI', 1, 'cirebon', 1, 'dusun 1', '001', '001', 1, 1, '123', 1, '123', '123', 1, 'PRF030221001', 'PRM030221001', 'PRW030221001', '123', '123', 'jhkhk@gmail.com');
+('SSW050221012', 'Machfudz Achyar Benzema', 'L', '1234567891', '1234567891', 'Serang', '2015-02-05', 2, 'WNI', 1, 'Kp. Kopi Bera', 1, 'Kopi Bera', '002', '002', 2, 1, NULL, NULL, NULL, '1234567891', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -769,7 +768,7 @@ ALTER TABLE `wali`
 -- AUTO_INCREMENT for table `agama`
 --
 ALTER TABLE `agama`
-  MODIFY `id_agama` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_agama` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `bank`

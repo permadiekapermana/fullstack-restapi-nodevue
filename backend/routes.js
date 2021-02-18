@@ -74,6 +74,14 @@ module.exports = function(app) {
 
     app.route('/wali/view').get(controllerWali.viewWali);
 
+    app.route('/siswa/viewrekap').get(controllerSiswa.viewRekapSiswa);
+
+    app.route('/siswa/viewtotall').get(controllerSiswa.viewTotalSiswaL);
+
+    app.route('/siswa/viewtotalp').get(controllerSiswa.viewTotalSiswaP);
+
+    app.route('/siswa/viewtotal').get(controllerSiswa.viewTotalSiswa);
+
     // route view by ID / Primary Key
     app.route('/agama/view/:id_agama').get(controllerAgama.viewAgamaById);
     

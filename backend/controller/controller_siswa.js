@@ -40,6 +40,67 @@ exports.viewSiswaById = function(req,res){
     );
 };
 
+exports.viewRekapSiswa = function(req,res){
+    connection.query(`SELECT
+                        CASE
+                            WHEN umur > 7 AND jenis_kelamin='L' THEN 'Laki-Laki > 7 Tahun' 
+                            WHEN umur > 7 AND jenis_kelamin='P' THEN 'Perempuan > 7 Tahun' 
+                            WHEN umur > 7 AND (jenis_kelamin='L' OR jenis_kelamin='P') THEN 'Siswa > 7 Tahun'
+                            WHEN umur < 6 AND jenis_kelamin='L' THEN 'Laki-Laki < 6 Tahun' 
+                            WHEN umur < 6 AND jenis_kelamin='P' THEN 'Perempuan < 6 Tahun'
+                            WHEN umur BETWEEN 6 and 7 AND jenis_kelamin='L' THEN 'Laki-Laki 6-7 Tahun'
+                            WHEN umur BETWEEN 6 and 7 AND jenis_kelamin='P' THEN 'Perempuan 6-7 Tahun'
+                            WHEN umur IS NULL THEN '(NULL)'
+                        END as range_usia,
+                    COUNT(*) AS jumlah
+                    FROM (SELECT jenis_kelamin, TIMESTAMPDIFF(YEAR, tgl_lahir, CURDATE()) AS umur FROM siswa) as temp_table
+                    GROUP BY range_usia`,
+        function(error, rows, field){
+            if(error){
+                connection.log(error);
+            } else {
+                response.ok(rows,res)
+            }
+        }
+    );
+};
+
+exports.viewTotalSiswaL = function(req,res){
+    connection.query(`SELECT COUNT(*) as total_laki FROM siswa WHERE jenis_kelamin='L'`,
+        function(error, rows, field){
+            if(error){
+                connection.log(error);
+            } else {
+                response.ok(rows,res)
+            }
+        }
+    );
+};
+
+exports.viewTotalSiswaP = function(req,res){
+    connection.query(`SELECT COUNT(*) as total_perempuan FROM siswa WHERE jenis_kelamin='P'`,
+        function(error, rows, field){
+            if(error){
+                connection.log(error);
+            } else {
+                response.ok(rows,res)
+            }
+        }
+    );
+};
+
+exports.viewTotalSiswa = function(req,res){
+    connection.query(`SELECT COUNT(*) as total_siswa FROM siswa`,
+        function(error, rows, field){
+            if(error){
+                connection.log(error);
+            } else {
+                response.ok(rows,res)
+            }
+        }
+    );
+};
+
 // add data siswa
 exports.addSiswa = function(req,res){
 

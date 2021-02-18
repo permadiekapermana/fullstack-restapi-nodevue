@@ -62,10 +62,10 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="assets/index.html" class="nav-link">
+                <router-link :to="{name: 'viewAyah'}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Ayah</p>
-                </a>
+                </router-link>
               </li>
               <li class="nav-item">
                 <a href="assets/index2.html" class="nav-link">

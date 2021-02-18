@@ -6,7 +6,10 @@ import viewSiswa from './components/module_siswa/viewSiswa.vue'
 import addSiswa from './components/module_siswa/addSiswa.vue'
 import updateSiswa from './components/module_siswa/updateSiswa.vue'
 import infoSiswa from './components/module_siswa/infoSiswa.vue'
- 
+import viewAyah from './components/module_ayah/viewAyah.vue'
+import addAyah from './components/module_ayah/addAyah.vue'
+import updateAyah from './components/module_ayah/updateAyah.vue'
+
 const routes = [
     {
         name: '/',
@@ -52,6 +55,21 @@ const routes = [
         name: 'infoSiswa',
         path: '/siswa/info/:id',
         component: infoSiswa
+    },
+    {
+        name: 'viewAyah',
+        path: '/ayah/view',
+        component: viewAyah
+    },
+    {
+        name: 'addAyah',
+        path: '/ayah/add',
+        component: addAyah
+    },
+    {
+        name: 'updateAyah',
+        path: '/ayah/update/:id',
+        component: updateAyah
     },
 ];
  
